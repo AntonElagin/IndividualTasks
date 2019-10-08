@@ -29,4 +29,4 @@ jobs:
           command: 'cmake --build build'
       - run:
           name: Point Unit Testing
-          command: './bin/point_test'
+          command: './cmake-build-debug/runTests'
