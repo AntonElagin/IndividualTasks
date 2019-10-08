@@ -48,6 +48,6 @@ endif()
 
 # Now simply link your own targets against gtest, gmock,
 # etc. as appropriate
-add_executable(test test_gtest.cpp)
-target_link_libraries(test  test_gtest.cpp)
+add_executable(myunittest test_gtest.cpp)
+target_link_libraries(myunittest  test_gtest.cpp)
 #add_test(NAME example_test COMMAND example)
