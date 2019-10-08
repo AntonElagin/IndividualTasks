@@ -16,6 +16,12 @@ jobs:
           name: Install CMAKE
           command: 'apt-get update && sudo apt-get install -y cmake'
       - run:
+          name: Gtest
+          command: 'sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp *.a /usr/lib'
+      - run:
+          name: Git
+          command: ' sudo apt update && sudo apt install git'
+      - run:
           name: Creating Build Files
           command: 'cmake -H. -Bbuild'
       - run:
@@ -24,9 +30,3 @@ jobs:
       - run:
           name: Point Unit Testing
           command: './bin/point_test'
-      - run:
-          name: Gtest
-          command: 'sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp *.a /usr/lib'
-      - run:
-          name: Git
-          command: ' sudo apt update && sudo apt install git'
