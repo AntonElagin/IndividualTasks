@@ -24,3 +24,6 @@ jobs:
       - run:
           name: Point Unit Testing
           command: './bin/point_test'
+      - run:
+          name: Gtest
+          command: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp *.a /usr/lib
