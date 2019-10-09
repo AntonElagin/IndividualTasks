@@ -3,6 +3,7 @@
 //
 
 #include "MyTask.h"
+#include <assert.h>
 
 
 bool is_less(const struct Airplane *l, const struct Airplane *r) {
@@ -63,15 +64,15 @@ void merge_sort(struct Airplane *array, size_t size,
 void task_function() {
   printf("Input size:\n");
   int size;
-  scanf("%d", &size);
+  assert(scanf("%d", &size) == 1);
   struct Airplane *airplane_array =
       (struct Airplane *)malloc(size * sizeof(struct Airplane));
 
   for (size_t i = 0; i < size; i++) {
     // printf("Input %d-th Airplane:", size);
-    scanf("%20s %20s %20s %d %d", airplane_array[i].brand,
+    assert(scanf("%20s %20s %20s %d %d", airplane_array[i].brand,
           airplane_array[i].model, airplane_array[i].appointment,
-          &airplane_array[i].crew_number, &airplane_array[i].range);
+          &airplane_array[i].crew_number, &airplane_array[i].range) == 5);
   }
   // Сортировка
   merge_sort(airplane_array, size, is_less);

@@ -3,14 +3,73 @@
 #include "MyTask.h"
 #include <stdio.h>
 
-TEST(task, sort) {
+#include <unistd.h>
+#include <stdio.h>
+#include <limits.h>
 
-  ASSERT_EQ(6, 6);
+
+
+bool operator==(const struct Airplane& a, const struct Airplane& b) {
+  return (!strcmp(a.brand, b.brand) && !strcmp(a.appointment, b.appointment) && !strcmp(a.model, b.model) && (a.crew_number == b.crew_number) && (a.range == b.range));
 }
 
-TEST(test_case_name, test_name)
+bool is_equally(const struct Airplane* a, const struct Airplane* b,int size) {
+  for (int i = 0; i < size; ++i) {
+    if (!(a[i] == b[i]))
+      return false;
+  }
+  return true;
+}
+
+
+TEST(task, is_less) {
+  struct Airplane a = {"abc" , "cd", "qwerty" , 1 , 2};
+  struct Airplane b = {"abc" , "cd", "qwerty" , 1 , 3};
+  ASSERT_TRUE(is_less(&a, &b));
+}
+
+TEST(task, sort)
 {
-  ASSERT_EQ(1, 1) << "1 is not equal 0";
+    FILE * input_file;
+    char name[] = "../tests/mytestinput.txt";
+    char buffer[255];
+
+    getcwd(buffer, sizeof(buffer));
+
+
+  struct Airplane *input_array = NULL;
+    int size = -1;
+
+    if ((input_file = fopen(name, "r")) != NULL)
+    {
+      fscanf(input_file ,"%d", &size);
+      input_array =
+          (struct Airplane *)malloc(size * sizeof(struct Airplane));
+      for (int i = 0; i < size; ++i) {
+        fscanf(input_file ,"%s %s %s %d %d", input_array[i].brand,
+              input_array[i].model, input_array[i].appointment,
+               &input_array[i].crew_number, &input_array[i].range);
+      }
+      merge_sort(input_array, size, &is_less);
+      }
+    fclose(input_file);
+    FILE * output_file;
+  char name2[] = "../tests/output.txt";
+    struct Airplane* output_array = (struct Airplane *)malloc(size * sizeof(struct Airplane));
+    if ((output_file = fopen(name2, "r")) != NULL)
+    {
+
+      for (int i = 0; i < size; ++i) {
+        fscanf(input_file ,"%s %s %s %d %d", output_array[i].brand,
+               output_array[i].model, output_array[i].appointment,
+               &output_array[i].crew_number, &output_array[i].range);
+      }
+
+    }
+  fclose(output_file);
+  ASSERT_TRUE(is_equally(input_array, output_array, size)) << "1 is not equal 0";
+  free(input_array);
+  free(output_array);
 }
 
 
