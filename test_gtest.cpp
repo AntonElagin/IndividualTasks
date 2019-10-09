@@ -51,11 +51,13 @@ TEST(task, sort)
                &input_array[i].crew_number, &input_array[i].range);
       }
       merge_sort(input_array, size, &is_less);
-      }
+      } else
+        ASSERT_TRUE(false) << "first file error";
+
     fclose(input_file);
     FILE * output_file;
   char name2[] = "../tests/output.txt";
-    struct Airplane* output_array = (struct Airplane *)malloc(size * sizeof(struct Airplane));
+  struct Airplane* output_array = (struct Airplane *)malloc(size * sizeof(struct Airplane));
     if ((output_file = fopen(name2, "r")) != NULL)
     {
 
@@ -65,9 +67,11 @@ TEST(task, sort)
                &output_array[i].crew_number, &output_array[i].range);
       }
 
-    }
+    } else
+      ASSERT_TRUE(false) << "first file error";
+
   fclose(output_file);
-  ASSERT_TRUE(is_equally(input_array, output_array, size)) << "1 is not equal 0";
+  ASSERT_TRUE(is_equally(input_array, output_array, size)) << "sort error";
   free(input_array);
   free(output_array);
 }
