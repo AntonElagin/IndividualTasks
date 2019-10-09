@@ -29,4 +29,4 @@ jobs:
           command: 'cmake --build build'
       - run:
           name: Run GTest
-          command: 'cd build/make && ./runTests'
+          command: 'cd build && ./runTests'
