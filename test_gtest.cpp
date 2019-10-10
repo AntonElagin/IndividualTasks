@@ -59,9 +59,9 @@ TEST(task, merge_sort) {
 
   FILE *output_file;
   char name2[] = "../tests/output.txt"; //../tests/output.txt
-  struct Airplane *output_array;
+  struct Airplane *output_array = NULL;
   if ((output_file = fopen(name2, "r")) != NULL) {
-    Airplane *output_array =
+    output_array =
         (struct Airplane *)malloc(size * sizeof(struct Airplane));
     for (int i = 0; i < size; ++i) {
       if (fscanf(input_file, "%20s %20s %20s %d %d", output_array[i].brand,
@@ -87,7 +87,7 @@ TEST(task, merge_sort) {
   if (input_array)
     free(input_array);
   if (output_array)
-  free(output_array);
+    free(output_array);
 }
 
 int main(int argc, char **argv) {
