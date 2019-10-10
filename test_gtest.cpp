@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
-
 #include "MyTask.h"
 #include <stdio.h>
-
 #include <limits.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -16,7 +14,7 @@
 
 bool operator==(const struct Airplane a, const struct Airplane b) {
   return (!(strcmp(a.brand, b.brand)) && (!strcmp(a.appointment, b.appointment)) &&
-          (strcmp(a.model, b.model) == 0) && (a.crew_number == b.crew_number) &&
+          (!strcmp(a.model, b.model)) && (a.crew_number == b.crew_number) &&
           (a.range == b.range));
 
 }
