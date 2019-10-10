@@ -46,7 +46,7 @@ TEST(task, merge_sort) {
     fclose(input_file);
   } else {
     printf("Input file error!");
-    ASSERT_TRUE(false) << "first file error(file PATH error)";
+    ASSERT_TRUE(false) << "first file error (file PATH error)";
   }
 
   FILE *output_file;
@@ -55,7 +55,7 @@ TEST(task, merge_sort) {
   if ((output_file = fopen(name2, "r")) != NULL) {
     output_array = (struct Airplane *)malloc(size * sizeof(struct Airplane));
     for (int i = 0; i < size; ++i) {
-      if (fscanf(input_file, "%20s %20s %20s %d %d", output_array[i].brand,
+      if (fscanf(output_file, "%20s %20s %20s %d %d", output_array[i].brand,
                  output_array[i].model, output_array[i].appointment,
                  &output_array[i].crew_number, &output_array[i].range) == 5) {
         EXPECT_STREQ(input_array[i].brand, output_array[i].brand)
@@ -75,7 +75,7 @@ TEST(task, merge_sort) {
     fclose(output_file);
   } else {
     printf("Input file error!");
-    ASSERT_TRUE(false) << "Second file error(file PATH error)";
+    ASSERT_TRUE(false) << "Second file error (file PATH error)";
   }
 
   if (input_array) free(input_array);

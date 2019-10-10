@@ -14,8 +14,8 @@ struct Airplane {
   char brand[20];
   char model[20];
   char appointment[20];
-  int crew_number;
-  int range;
+  int  crew_number;
+  int  range;
 };
 
 bool is_less(const struct Airplane *l, const struct Airplane *r);
