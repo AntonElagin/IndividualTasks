@@ -38,4 +38,4 @@ jobs:
           command: 'cppcheck -j4  --inconclusive --enable=all --language=c  MyTask.cpp MyTask.h main.cpp'
       - run:
           name: Run Valgrid
-          command: 'cd build && valgrind --tool=memcheck --leak-check=yes ./runTests'
+          command: 'cd build && valgrind --tool=memcheck -v --leak-check=yes ./runTests'
