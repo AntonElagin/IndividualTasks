@@ -7,13 +7,11 @@ language: cpp       # на практике разницы между специ
 os:
     # будем прогонять CI и на Linux, и на Mac OS X...
     - linux
-    - osx
 
 compiler:
     # ... и с помощью GCC, и Clang
     - gcc
     - clang
-
 env:
     # список переменных окружения, влияющих на матрицу сборки:
     - TARGET_CPU=amd64 BUILD_CONFIGURATION=Debug
@@ -21,17 +19,6 @@ env:
     - TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
     - TARGET_CPU=x86 BUILD_CONFIGURATION=Release
 
-matrix:
-    exclude:
-        # вручную исключим ненужные элементы из матрицы сборки:
-        - os:       osx
-          compiler: gcc
-
-        - os:  osx
-          env: TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
-
-        - os:  osx
-          env: TARGET_CPU=x86 BUILD_CONFIGURATION=Release
 
 install:
     # скрипт настройки среды и установки зависимостей:
