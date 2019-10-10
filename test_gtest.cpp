@@ -7,22 +7,22 @@
 #include <stdio.h>
 #include <unistd.h>
 
+//bool is_equal(const struct Airplane a, const struct Airplane b) {
+//  return (!(strcmp(a.brand, b.brand)) && (!strcmp(a.appointment, b.appointment)) &&
+//          (strcmp(a.model, b.model) == 0) && (a.crew_number == b.crew_number) &&
+//          (a.range == b.range));
+//
+//}
+
 bool operator==(const struct Airplane a, const struct Airplane b) {
-  return (!strcmp(a.brand, b.brand) && !strcmp(a.appointment, b.appointment) &&
-          !strcmp(a.model, b.model) && (a.crew_number == b.crew_number) &&
+  return (!(strcmp(a.brand, b.brand)) && (!strcmp(a.appointment, b.appointment)) &&
+          (strcmp(a.model, b.model) == 0) && (a.crew_number == b.crew_number) &&
           (a.range == b.range));
+
 }
 
-bool is_equally(const struct Airplane *a, const struct Airplane *b, int size) {
-  if (size) {
-    for (int i = 0; i < size; ++i) {
-      if (!(a[i] == b[i]))
-        return false;
-    }
-    return true;
-  }
-  return false;
-}
+
+
 
 TEST(task, is_less) {
   struct Airplane a = {"abc", "cd", "qwerty", 1, 2};
@@ -30,7 +30,7 @@ TEST(task, is_less) {
   ASSERT_TRUE(is_less(&a, &b));
 }
 
-TEST(task, sort) {
+TEST(task, merge_sort) {
   FILE *input_file;
   char name[] = "../tests/mytestinput.txt";
   char buffer[255];
@@ -49,28 +49,41 @@ TEST(task, sort) {
              &input_array[i].crew_number, &input_array[i].range);
     }
     merge_sort(input_array, size, &is_less);
-    fclose(input_file);
-  } else
-    ASSERT_TRUE(false) << "first file error";
+      fclose(input_file);
+  } else {
+    printf("Input file error!");
+    ASSERT_TRUE(false) << "first file error(file PATH error)";
+  }
+
 
 
   FILE *output_file;
-  char name2[] = "../tests/output.txt";
-  struct Airplane *output_array =
-      (struct Airplane *)malloc(size * sizeof(struct Airplane));
+  char name2[] = "../tests/output.txt"; //../tests/output.txt
+  struct Airplane *output_array;
   if ((output_file = fopen(name2, "r")) != NULL) {
-
+    Airplane *output_array =
+        (struct Airplane *)malloc(size * sizeof(struct Airplane));
     for (int i = 0; i < size; ++i) {
-      fscanf(input_file, "%20s %20s %20s %d %d", output_array[i].brand,
+      if (fscanf(input_file, "%20s %20s %20s %d %d", output_array[i].brand,
              output_array[i].model, output_array[i].appointment,
-             &output_array[i].crew_number, &output_array[i].range);
+             &output_array[i].crew_number, &output_array[i].range) == 5) {
+        EXPECT_STREQ(input_array[i].brand, output_array[i].brand) << i << "-th of " << size << " not Equal brand";
+        EXPECT_STREQ(input_array[i].model, output_array[i].model) << i << "-th of " << size << " not Equal model";
+        EXPECT_STREQ(input_array[i].appointment, output_array[i].appointment)
+                  << i << "-th of " << size << " not Equal appointment";
+        EXPECT_EQ(input_array[i].crew_number, output_array[i].crew_number)
+                  << i << "-th of " << size << " not Equal crew number";
+        EXPECT_EQ(input_array[i].range, output_array[i].range) << i << "-th of " << size << " not Equal range";
+      } else {
+        ASSERT_TRUE(true) << "Second file output error" << i;
+      }
     }
     fclose(output_file);
-  } else
-    ASSERT_TRUE(false) << "first file error";
+  } else {
+    printf("Input file error!");
+    ASSERT_TRUE(false) << "Second file error(file PATH error)";
+  }
 
-
-  ASSERT_TRUE(is_equally(input_array, output_array, size)) << "sort error";
   if (input_array)
     free(input_array);
   if (output_array)
