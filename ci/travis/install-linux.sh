@@ -27,8 +27,8 @@ if [ "$TARGET_CPU" == "x86" ]; then
     # g++-multilib ставим в самом конце, после i386-пакетов!
     sudo apt-get install -y g++-5-multilib
 fi
-sudo apt-get install libgtest-dev
-sudo apt-get install cmake # install cmake
+sudo apt-get install -y libgtest-dev
+sudo apt-get install -y cmake # install cmake
 cd /usr/src/gtest
 sudo cmake CMakeLists.txt
 sudo make
