@@ -25,7 +25,7 @@ void task_console_test() {
            airplane_array[i].range);
   }
 
-  //free(airplane_array);
+  free(airplane_array);
 }
 
 int main() {

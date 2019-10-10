@@ -16,11 +16,14 @@ jobs:
           name: Install CMAKE
           command: 'apt-get update && sudo apt-get install -y cmake'
       - run:
-          name: Gtest
+          name: Install Gtest
           command: 'sudo apt-get install -y libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp *.a /usr/lib'
       - run:
-          name: Git
+          name: Install Git
           command: ' sudo apt update && sudo apt install -y git'
+      - run:
+          name: Install Cppcheck and Valgrid
+          command: 'sudo apt-get install -y cppcheck && sudo apt install -y valgrind'
       - run:
           name: Creating Build Files
           command: 'cmake -H. -Bbuild'
@@ -31,5 +34,8 @@ jobs:
           name: Run GTest
           command: 'cd build && ./runTests'
       - run:
-          name: cppchel
-          command: 'sudo apt-get install -y cppcheck && cppcheck --inconclusive --enable=all --language=c  MyTask.cpp MyTask.h main.cpp'
+          name: Run Cppcheck
+          command: 'cppcheck -j4  --inconclusive --enable=all --language=c  MyTask.cpp MyTask.h main.cpp'
+      - run:
+          name: Run Valgrid
+          command: 'cd build && valgrind --tool=memcheck --leak-check=yes ./runTests'
