@@ -4,10 +4,10 @@
 
 #ifndef TASK1_MYTASK_H
 #define TASK1_MYTASK_H
-#include <cstring>
 #include <malloc.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <cstring>
 #include <string>
 
 struct Airplane {
@@ -24,4 +24,4 @@ void merge_sort(struct Airplane *array, size_t size,
                 bool(isLess)(const struct Airplane *, const struct Airplane *));
 
 void task_function();
-#endif // TASK1_MYTASK_H
+#endif  // TASK1_MYTASK_H

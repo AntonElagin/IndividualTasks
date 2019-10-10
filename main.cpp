@@ -1,6 +1,5 @@
-#include "MyTask.h"
 #include <assert.h>
-
+#include "MyTask.h"
 
 void task_console_test() {
   printf("Input size:\n");

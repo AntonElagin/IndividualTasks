@@ -19,8 +19,7 @@ void merge_sort(struct Airplane *array, size_t size,
                              const struct Airplane *)) {
   assert(array && (size > 0));
   int mid = size / 2;
-  if (size % 2 == 1)
-    mid++;
+  if (size % 2 == 1) mid++;
   int h = 1;
   struct Airplane *c =
       (struct Airplane *)malloc(size * sizeof(struct Airplane));
@@ -60,7 +59,5 @@ void merge_sort(struct Airplane *array, size_t size,
     // array[i] = c[i];
   }
   //
-  // free(c);
+  free(c);
 }
-
-
