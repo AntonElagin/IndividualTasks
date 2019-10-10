@@ -75,7 +75,7 @@ TEST(task, merge_sort) {
                   << i << "-th of " << size << " not Equal crew number";
         EXPECT_EQ(input_array[i].range, output_array[i].range) << i << "-th of " << size << " not Equal range";
       } else {
-        ASSERT_TRUE(true) << "Second file output error" << i;
+        ASSERT_TRUE(false) << "Second file output error" << i;
       }
     }
     fclose(output_file);
