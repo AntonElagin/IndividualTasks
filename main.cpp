@@ -1,5 +1,4 @@
 #include "MyTask.h"
-#include <iostream>
 #include <assert.h>
 
 
@@ -11,7 +10,6 @@ void task_console_test() {
       (struct Airplane *)malloc(size * sizeof(struct Airplane));
 
   for (size_t i = 0; i < size; i++) {
-    // printf("Input %d-th Airplane:", size);
     assert(scanf("%20s %20s %20s %d %d", airplane_array[i].brand,
                  airplane_array[i].model, airplane_array[i].appointment,
                  &airplane_array[i].crew_number,
@@ -27,7 +25,7 @@ void task_console_test() {
            airplane_array[i].range);
   }
 
-  free(airplane_array);
+  //free(airplane_array);
 }
 
 int main() {

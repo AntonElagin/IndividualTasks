@@ -30,3 +30,6 @@ jobs:
       - run:
           name: Run GTest
           command: 'cd build && ./runTests'
+      - run:
+          name: cppchel
+          command: 'cppcheck --inconclusive --enable=all --language=c  MyTask.cpp MyTask.h main.cpp'

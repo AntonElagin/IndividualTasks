@@ -22,6 +22,7 @@ bool operator==(const struct Airplane a, const struct Airplane b) {
 
 
 
+
 TEST(task, is_less) {
   struct Airplane a = {"abc", "cd", "qwerty", 1, 2};
   struct Airplane b = {"abc", "cd", "qwerty", 1, 3};

@@ -59,7 +59,8 @@ void merge_sort(struct Airplane *array, size_t size,
     // for (i = 0; i < size; i++)
     // array[i] = c[i];
   }
-  free(c);
+  //
+  // free(c);
 }
 
 
