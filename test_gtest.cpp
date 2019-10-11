@@ -1,30 +1,16 @@
 #include <gtest/gtest.h>
-#include <limits.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "MyTask.h"
-
-// bool is_equal(const struct Airplane a, const struct Airplane b) {
-//  return (!(strcmp(a.brand, b.brand)) && (!strcmp(a.appointment,
-//  b.appointment)) &&
-//          (strcmp(a.model, b.model) == 0) && (a.crew_number == b.crew_number)
-//          && (a.range == b.range));
-//
-//}
-//
-// bool operator==(const struct Airplane a, const struct Airplane b) {
-//  return (!(strcmp(a.brand, b.brand)) && (!strcmp(a.appointment,
-//  b.appointment)) &&
-//          (!strcmp(a.model, b.model)) && (a.crew_number == b.crew_number) &&
-//          (a.range == b.range));
-//
-//}
-//
+#include "my_task.h"
 
 TEST(task, is_less) {
   struct Airplane first = {"abc", "cd", "qwerty", 1, 2};
   struct Airplane second = {"abc", "cd", "qwerty", 1, 3};
   ASSERT_TRUE(is_less(&first, &second));
+}
+
+TEST(task, size_0) {
+  ASSERT_THROW(merge_sort(NULL, 0, is_less), std::runtime_error);
 }
 
 TEST(task, merge_sort) {

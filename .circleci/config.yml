@@ -39,3 +39,6 @@ jobs:
       - run:
           name: Run Valgrind
           command: 'cd build && valgrind --tool=memcheck -v --leak-check=yes ./runTests'
+      - run:
+          name: Run Gcover
+          command: 'mkdir Build && cd Build && cmake .. && make && make test && make ExperimentalCoverage && gcovr -r ../ && gcovr -r ../ --html -o cover-html.html'
