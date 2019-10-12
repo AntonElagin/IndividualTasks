@@ -12,8 +12,7 @@ bool is_less(const Airplane *l, const Airplane *r) {
 
 void merge_sort(Airplane *array, size_t size,
                 bool(isLess)(const Airplane *, const Airplane *)) {
-  if (!array || (size <= 0))
-    return;
+  if (!array || (size <= 1)) return;
   int mid = size / 2;
   if (size % 2 == 1) mid++;
   int h = 1;

@@ -9,9 +9,7 @@ TEST(task, is_less) {
   ASSERT_TRUE(is_less(&first, &second));
 }
 
-TEST(task, size_0) {
-  ASSERT_NO_THROW(merge_sort(NULL, 0, is_less));
-}
+TEST(task, Null_ptr_and_not0_size) { ASSERT_NO_THROW(merge_sort(NULL, 50, is_less)); }
 
 TEST(task, merge_sort) {
   FILE *input_file;
