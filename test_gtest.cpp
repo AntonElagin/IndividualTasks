@@ -10,7 +10,7 @@ TEST(task, is_less) {
 }
 
 TEST(task, size_0) {
-  ASSERT_THROW(merge_sort(NULL, 0, is_less), std::runtime_error);
+  ASSERT_NO_THROW(merge_sort(NULL, 0, is_less));
 }
 
 TEST(task, merge_sort) {
