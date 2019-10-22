@@ -38,7 +38,7 @@ jobs:
           command: 'cd Task1/build && ./runTests'
       - run:
           name: Run Cppcheck
-          command: 'cppcheck -j4  --inconclusive --enable=all --language=c  MyTask.cpp MyTask.h main.cpp'
+          command: 'cd Task1 && cppcheck -j4  --inconclusive --enable=all --language=c  MyTask.cpp MyTask.h main.cpp'
       - run:
           name: Run Valgrind
           command: 'cd Task1/build && valgrind --tool=memcheck -v --leak-check=yes ./runTests'
