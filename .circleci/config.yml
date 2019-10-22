@@ -29,19 +29,19 @@ jobs:
           command: 'sudo apt-get install -y cppcheck && sudo apt install -y valgrind'
       - run:
           name: Creating Build Files
-          command: 'cmake -H. -Bbuild'
+          command: 'cd Task1 && cmake -H. -Bbuild'
       - run:
           name: Creating Binary Files
-          command: 'cmake --build build'
+          command: 'cd Task1 && cmake --build build'
       - run:
           name: Run GTest
-          command: 'cd build && ./runTests'
+          command: 'cd Task1/build && ./runTests'
       - run:
           name: Run Cppcheck
           command: 'cppcheck -j4  --inconclusive --enable=all --language=c  MyTask.cpp MyTask.h main.cpp'
       - run:
           name: Run Valgrind
-          command: 'cd build && valgrind --tool=memcheck -v --leak-check=yes ./runTests'
+          command: 'cd Task1/build && valgrind --tool=memcheck -v --leak-check=yes ./runTests'
       - run:
           name: Run Gcover
-          command: 'mkdir Build && cd Build && cmake .. && make && make test && make ExperimentalCoverage && gcovr -r ../ && gcovr -r ../ --html -o cover-html.html'
+          command: 'cd Task1/ && mkdir Build && cd Build && cmake .. && make && make test && make ExperimentalCoverage && gcovr -r ../ && gcovr -r ../ --html -o cover-html.html'
