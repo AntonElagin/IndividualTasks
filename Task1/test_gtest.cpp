@@ -14,7 +14,6 @@ TEST(task, Null_ptr_and_not0_size) { ASSERT_NO_THROW(merge_sort(NULL, 50, is_les
 TEST(task, merge_sort) {
   FILE *input_file;
   char name[] = "../tests/mytestinput.txt";
-
   struct Airplane *input_array = NULL;
   int size = 0;
 
@@ -28,6 +27,7 @@ TEST(task, merge_sort) {
     }
     merge_sort(input_array, size, &is_less);
     fclose(input_file);
+
   } else {
     printf("Input file error!");
     ASSERT_TRUE(false) << "first file error (file PATH error)";
@@ -64,6 +64,7 @@ TEST(task, merge_sort) {
 
   if (input_array) free(input_array);
   if (output_array) free(output_array);
+
 }
 
 int main(int argc, char **argv) {
