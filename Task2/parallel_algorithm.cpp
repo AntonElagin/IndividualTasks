@@ -6,8 +6,9 @@
 
 
 
-int find_zero_count_parallel(const Comment* array, int arr_size, int process_count) {
+int find_zero_count_parallel(const Comment* array, int arr_size) {
   pid_t child;
+  size_t process_count = 4;
   int return_counter = 0;
   for (int i = 0; i < process_count; ++i) {
     int fd[2];
@@ -19,6 +20,7 @@ int find_zero_count_parallel(const Comment* array, int arr_size, int process_cou
       int counter = find_zero_count(array, i * delta , (i + 1 ) * delta);
       close(fd[0]);
       write(fd[1], &counter, sizeof(int));
+      free((void *) array);
       exit(EXIT_SUCCESS);
     } else {
       int count = 0;
@@ -42,8 +44,3 @@ int find_zero_count(const Comment * array, int low, int high) {
     return zero_counter;
 }
 
-size_t find_core_num(){
-  size_t core_num = system("cat /proc/cpuinfo|grep processor|wc -l");
-  assert(core_num < MAX_CORES);
-  return core_num;
-}

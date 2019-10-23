@@ -12,7 +12,5 @@
 
 
 int find_zero_count_naive(const Comment* , int );
-int get_comment_array(Comment** , int*,const char *);
-int generate_comment_array(int size,const char * file_name);
 
 #endif //INDIVIDUALTASK2_NAIVE_ALGORITHM_H

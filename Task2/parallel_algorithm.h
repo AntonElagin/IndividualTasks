@@ -14,7 +14,8 @@
 #define MAX_CORES 50
 
 
-int find_zero_count_parallel(const Comment* , int ,int);
+int find_zero_count_parallel(const Comment* , int);
+int find_core_num();
 int find_zero_count(const Comment* , int, int);
 
 #endif //INDIVIDUALTASK2_PARALLEL_ALGORITHM_H
