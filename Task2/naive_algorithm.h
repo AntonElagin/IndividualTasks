@@ -10,7 +10,6 @@
 #include <time.h>
 #include "struct.h"
 
+int find_zero_count_naive(const Comment*, int);
 
-int find_zero_count_naive(const Comment* , int );
-
-#endif //INDIVIDUALTASK2_NAIVE_ALGORITHM_H
+#endif  // INDIVIDUALTASK2_NAIVE_ALGORITHM_H
