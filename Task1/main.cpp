@@ -1,7 +1,5 @@
-#include "MyTask.h"
-#include <iostream>
 
-int main() {
+#include "my_task.h"
 
-  return 0;
-}
+int main() { return 0; }
+
