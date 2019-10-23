@@ -19,9 +19,6 @@ add_library(mylib STATIC ${LIB_SOURCE_FILES})
 target_link_libraries(task1 mylib)
 
 
-add_executable(consoleTest test_main.cpp)
-target_link_libraries(consoleTest mylib)
-
 
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
