@@ -37,10 +37,10 @@ int generate_comment_array(int size,const char * file_name) {
         ptr[i].mark.status = 0;
       else
         ptr[i].mark.status = 4607182418800017408 + (rand() % 50);
-      int a;
-      if (a = fprintf(fptr,"%u %u %lu\n", ptr[i].id, ptr[i].count,ptr[i].mark.status) < 1)
+      if (fprintf(fptr,"%u %u %lu\n", ptr[i].id, ptr[i].count,ptr[i].mark.status) < 1)
         return -1;
     }
+    free(ptr);
     fclose(fptr);
     free(ptr);
     return 0;
