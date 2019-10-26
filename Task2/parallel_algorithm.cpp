@@ -33,7 +33,7 @@ int find_zero_count_parallel(const Comment* array, int arr_size) {
     }
 
   }
-
+  free(child);
   return return_counter;
 }
 
