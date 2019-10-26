@@ -7,32 +7,35 @@
 
 int find_zero_count_parallel(const Comment* array, int arr_size) {
   size_t process_count = 4;
-  pid_t* child = (pid_t*) malloc(4 * sizeof(pid_t));
+  pid_t * child = (pid_t*) malloc(4 * sizeof(pid_t));
+  //pid_t child[4];
   int return_counter = 0;
+  int fd[2], status;
+  pipe(fd);
   for (int i = 0; i < process_count; ++i) {
-    int fd[2];
+
     int delta = arr_size / process_count;
-    pipe(fd);
-    if ((child[i] = fork()) < 0)
+
+    if ((child[i] = fork()) < 0) {
+      //free(child);
       return -1;
+    }
     else if (child[i] == 0) {
       int counter = find_zero_count(array, i * delta, (i + 1) * delta);
       close(fd[0]);
       write(fd[1], &counter, sizeof(int));
-      free((void*)array);
       exit(EXIT_SUCCESS);
-    } else {
-      int count = 0;
-      close(fd[1]);
-      read(fd[0], &count, sizeof(int));
-      return_counter += count;
     }
-
-    for (int j = 0; j < process_count; ++j) {
-      waitpid(child[j],EXIT_SUCCESS,WUNTRACED);
-    }
-
   }
+
+  for (int j = 0; j < process_count; ++j) {
+    int count = 0;
+    close(fd[1]);
+    read(fd[0], &count, sizeof(int));
+    return_counter += count;
+    waitpid(child[j],&status,WNOHANG);
+  }
+
   free(child);
   return return_counter;
 }
