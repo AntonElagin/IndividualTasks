@@ -13,11 +13,9 @@ int find_zero_count_parallel(const Comment* array, int arr_size) {
   int fd[2], status;
   pipe(fd);
   for (int i = 0; i < process_count; ++i) {
-
     int delta = arr_size / process_count;
-
     if ((child[i] = fork()) < 0) {
-      //free(child);
+      free(child);
       return -1;
     }
     else if (child[i] == 0) {
