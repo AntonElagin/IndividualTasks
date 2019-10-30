@@ -1,4 +1,5 @@
 # IndividualTasks2
+[![CircleCI](https://circleci.com/gh/AntonElagin/IndividualTasks/tree/Task2.svg?style=svg)](https://circleci.com/gh/AntonElagin/IndividualTasks/tree/Task2)
 
 В вашем распоряжении — массив из 10 млн. структур,
 содержащих числовой идентификатор записи (комментария) в социальной сети,
