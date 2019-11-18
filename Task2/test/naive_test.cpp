@@ -3,6 +3,7 @@
 #include "parallel_algorithm/parallel_algorithm.h"
 
 
+
 TEST_F(TestTemplate, Naive_Empty_array) {
   ASSERT_EQ(find_zero_count_naive(NULL, -10), 0);
 }

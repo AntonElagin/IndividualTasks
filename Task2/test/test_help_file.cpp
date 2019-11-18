@@ -1,23 +1,23 @@
 #include "test_help_file.h"
 
-void TestTemplate::SetUp() {
-  TrueResult = generate_comment_array(10000000,"../test/input2.txt");
-  FILE* fptr = fopen("../test/input2.txt", "r");
-  if (fptr) {
-    fscanf(fptr, "%d", &size);
-    comment = new Comment [size]; //(Comment*) malloc(sizeof(Comment) * (size));
-    for (int i = 0; i < size; ++i) {
-      fscanf(fptr, "%u %u %lu\n", &comment[i].id, &comment[i].count,
-             &comment[i].mark.status);
-    }
-    fclose(fptr);
-  }
-}
-
-void TestTemplate::TearDown() {
-  remove("../test/test_data/input2.txt");
-  delete [] comment;
-}
+//void TestTemplate::SetUp() {
+//  TrueResult = generate_comment_array(10000000,"../test/input2.txt");
+//  FILE* fptr = fopen("../test/input2.txt", "r");
+//  if (fptr) {
+//    fscanf(fptr, "%d", &size);
+//    comment = new Comment [size]; //(Comment*) malloc(sizeof(Comment) * (size));
+//    for (int i = 0; i < size; ++i) {
+//      fscanf(fptr, "%u %u %lu\n", &comment[i].id, &comment[i].count,
+//             &comment[i].mark.status);
+//    }
+//    fclose(fptr);
+//  }
+//}
+//
+//void TestTemplate::TearDown() {
+//  remove("../test/test_data/input2.txt");
+//  delete [] comment;
+//}
 
 int TestTemplate::generate_comment_array(int size, const char* file_name) {
   FILE* fptr = fopen(file_name, "w");
@@ -53,3 +53,30 @@ int TestTemplate::generate_comment_array(int size, const char* file_name) {
   }
   return -1;
 }
+
+void TestTemplate::SetUpTestCase() {
+  TrueResult = generate_comment_array(10000000,"../test/input2.txt");
+  FILE* fptr = fopen("../test/input2.txt", "r");
+  if (fptr) {
+    fscanf(fptr, "%d", &size);
+    comment = new Comment [size]; //(Comment*) malloc(sizeof(Comment) * (size));
+    for (int i = 0; i < size; ++i) {
+      fscanf(fptr, "%u %u %lu\n", &comment[i].id, &comment[i].count,
+             &comment[i].mark.status);
+    }
+    fclose(fptr);
+  }
+}
+
+void TestTemplate::TearDownTestCase() {
+  remove("../test/test_data/input2.txt");
+  delete [] comment;
+}
+
+TestTemplate::TestTemplate() {}
+
+Comment * TestTemplate::comment = nullptr;
+int TestTemplate::size = 0;
+int TestTemplate::TrueResult = 0;
+
+

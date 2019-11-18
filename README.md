@@ -9,11 +9,12 @@
 алгоритм с использованием нескольких процессов с учетом возможной реорганизации структуры 
 и выравнивания ее элементов по линиям кэш-памяти.
 
-Result:
-    Array size : 10 000 000
+Result:<br>
+<pre>    Array size : 10 000 000
     Parallel algorithm:
         Result = 1851533
-        Execution_time = 14361
+        <b><i>Execution_time = 14361</i></b>
     Naive algorithm
         Result = 1851533
-        Execution_time = 45046
+        <b><i>Execution_time = 45046</i></b>
+</pre>

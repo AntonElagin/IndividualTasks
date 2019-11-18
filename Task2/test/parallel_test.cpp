@@ -1,5 +1,6 @@
 #include "test/test_help_file.h"
 #include "parallel_algorithm/parallel_algorithm.h"
+#pragma once
 
 
 
