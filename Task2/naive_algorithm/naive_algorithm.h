@@ -4,7 +4,7 @@
 #include <malloc.h>
 #include <stdlib.h>
 #include <time.h>
-#include "struct.h"
+#include "../struct.h"
 
 int find_zero_count_naive(const Comment*, int);
 

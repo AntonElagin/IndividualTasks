@@ -1,11 +1,11 @@
-#include <gtest/gtest.h>
-#include "Test/test_help_file.cpp"
+#include "test/test_help_file.h"
 #include "parallel_algorithm/parallel_algorithm.h"
+
 
 
 TEST_F(TestTemplate, Parallel_Return_value) {
 int count = find_zero_count_parallel(comment, size);
-ASSERT_EQ(count, 1796);
+ASSERT_EQ(count, TrueResult);
 }
 
 TEST_F(TestTemplate, Parallel_Empty_array) {

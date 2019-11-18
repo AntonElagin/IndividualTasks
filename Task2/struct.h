@@ -1,7 +1,3 @@
-//
-// Created by anton on 22.10.2019.
-//
-
 #ifndef INDIVIDUALTASK2_STRUCT_H
 #define INDIVIDUALTASK2_STRUCT_H
 

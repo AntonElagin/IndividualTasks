@@ -2,6 +2,14 @@
 #include <sys/sysinfo.h>
 #include "parallel_algorithm.h"
 
+int find_zero_count(const Comment* array, int low, int high) {
+  int zero_counter = 0;
+  for (int j = low; j < high; ++j) {
+    if (array[j].mark.status == 0) ++zero_counter;
+  }
+  return zero_counter;
+}
+
 int find_zero_count_parallel(const Comment* array, int arr_size) {
   if (!array && arr_size <= 0 )
     return 0;
@@ -9,9 +17,14 @@ int find_zero_count_parallel(const Comment* array, int arr_size) {
   if (process_count == 0)
     return -1;
   pid_t * child = (pid_t*) malloc(process_count * sizeof(pid_t));
+  if (!child)
+    return -1;
   int return_counter = 0;
   int fd[2], status;
-  pipe(fd);
+  if (pipe(fd) == -1) {
+    free(child);
+    return -1;
+  }
   for (int i = 0; i < process_count; ++i) {
     int delta = arr_size / process_count;
     if ((child[i] = fork()) < 0) {
@@ -26,9 +39,9 @@ int find_zero_count_parallel(const Comment* array, int arr_size) {
     }
   }
 
+  close(fd[1]);
   for (int j = 0; j < process_count; ++j) {
     int count = 0;
-    close(fd[1]);
     read(fd[0], &count, sizeof(int));
     return_counter += count;
     waitpid(child[j],&status,WNOHANG);
@@ -38,10 +51,4 @@ int find_zero_count_parallel(const Comment* array, int arr_size) {
   return return_counter;
 }
 
-int find_zero_count(const Comment* array, int low, int high) {
-  int zero_counter = 0;
-  for (int j = low; j < high; ++j) {
-    if (array[j].mark.status == 0) ++zero_counter;
-  }
-  return zero_counter;
-}
+

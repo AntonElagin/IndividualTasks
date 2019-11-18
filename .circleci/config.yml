@@ -38,10 +38,10 @@ jobs:
           command: 'cd Task2/build && ./runTests'
       - run:
           name: Run Cppcheck
-          command: 'cd Task2 &&  cppcheck -j4  --inconclusive --enable=all --language=c++  test_gtest.cpp '
+          command: 'cd Task2 &&  cppcheck -j4  --inconclusive --enable=all --language=c++  test/* test_gtest.cpp && cppcheck -j4  --inconclusive --enable=all --language=c parallel_algorithm/* naive_algorithm/* parallel_main.cpp naive_main.cpp struct.h'
       - run:
           name: Run Valgrind
-          command: 'cd Task2/build && valgrind --tool=memcheck -v --leak-check=yes ./runTests'
+          command: 'cd Task2/build && valgrind --tool=memcheck -v --leak-check=yes ./runTests && '
       - run:
           name: Run Gcover
           command: 'cd Task2/ && mkdir Build && cd Build && cmake .. && make && make test && make ExperimentalCoverage && gcovr -r ../ && gcovr -r ../ --html -o cover-html.html'
