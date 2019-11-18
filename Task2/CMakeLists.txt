@@ -51,7 +51,9 @@ target_link_libraries(runTests PUBLIC parallel_algorithm_lib)
 include(CTest)
 add_executable(hello test_gtest.cpp
         test/parallel_test.cpp
-        test/naive_test.cpp)
+        test/naive_test.cpp
+        test/test_help_file.cpp
+        test/test_help_file.h)
 add_test(hello_test ${EXECUTABLE_OUTPUT_PATH}/hello)
 add_definitions(-fprofile-arcs -ftest-coverage)
 target_link_libraries(hello -fprofile-arcs)
