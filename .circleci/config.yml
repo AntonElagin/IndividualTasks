@@ -16,17 +16,35 @@ jobs:
           name: Install CMAKE
           command: 'apt-get update && sudo apt-get install -y cmake'
       - run:
-          name: Gtest
+          name: Install Gtest
           command: 'sudo apt-get install -y libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp *.a /usr/lib'
       - run:
-          name: Git
+          name: Install Git
           command: ' sudo apt update && sudo apt install -y git'
       - run:
+          name: Install Gcovr
+          command: 'sudo apt-get install -y gcovr'
+      - run:
+          name: Install Cppcheck and Valgrind
+          command: 'sudo apt-get install -y cppcheck && sudo apt install -y valgrind'
+      - run:
           name: Creating Build Files
-          command: 'cd Task1 && cmake -H. -Bbuild'
+          command: 'cd Task2 && cmake -H. -Bbuild'
       - run:
           name: Creating Binary Files
-          command: 'cd Task1 && cmake --build build'
+          command: 'cd Task2 && cmake --build build'
       - run:
           name: Run GTest
-          command: 'cd Task1/build && ./runTests'
+          command: 'cd Task2/build && ./runTests'
+      - run:
+          name: Run Cppcheck
+          command: 'cd Task2 &&  cppcheck -j4  --inconclusive --enable=all --language=c++  test/* test_gtest.cpp && cppcheck -j4  --inconclusive --enable=all --language=c parallel_algorithm/* naive_algorithm/* parallel_main.cpp naive_main.cpp struct.h'
+      - run:
+          name: Run Valgrind
+          command: 'cd Task2/build && valgrind --tool=memcheck -v --leak-check=yes ./runTests'
+      - run:
+          name: Run Gcover
+          command: 'cd Task2/ && mkdir Build && cd Build && cmake .. && make && make test && make ExperimentalCoverage && gcovr -r ../ && gcovr -r ../ --html -o cover-html.html'
+      - store_artifacts:
+          path: ./Task2/Build/cover-html.html
+          destination: artifact-file
