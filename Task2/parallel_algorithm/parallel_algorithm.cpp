@@ -27,12 +27,17 @@ int find_zero_count_parallel(const Comment* array, int arr_size) {
   }
   for (int i = 0; i < process_count; ++i) {
     int delta = arr_size / process_count;
+    int residue = arr_size % process_count;
     if ((child[i] = fork()) < 0) {
       free(child);
       return -1;
     }
     else if (child[i] == 0) {
-      int counter = find_zero_count(array, i * delta, (i + 1) * delta);
+      int counter;
+      if (i == process_count - 1)
+        counter = find_zero_count(array,i * delta ,arr_size );
+      else
+        counter = find_zero_count(array, i * delta, (i + 1) * delta);
       close(fd[0]);
       write(fd[1], &counter, sizeof(int));
       exit(EXIT_SUCCESS);
