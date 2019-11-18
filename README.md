@@ -9,6 +9,8 @@
 алгоритм с использованием нескольких процессов с учетом возможной реорганизации структуры 
 и выравнивания ее элементов по линиям кэш-памяти.
 
+<a href="https://72-213576085-gh.circle-artifacts.com/0/artifact-file"> Ссылка на gcovr </a> <br>
+
 Result:<br>
 <pre>    Array size : 10 000 000
     Parallel algorithm:
