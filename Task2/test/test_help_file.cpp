@@ -1,7 +1,7 @@
 #include "test_help_file.h"
 
 void TestTemplate::SetUp() {
-  TrueResult = generate_comment_array(10000000,"../test/test_data/input2.txt");
+  TrueResult = generate_comment_array(100000,"../test/test_data/input2.txt");
   FILE* fptr = fopen("../test/test_data/input2.txt", "r");
   if (fptr) {
     fscanf(fptr, "%d", &size);
