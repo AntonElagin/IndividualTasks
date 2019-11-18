@@ -47,7 +47,7 @@ jobs:
           command: 'cd Task2/ && mkdir Build && cd Build && cmake .. && make && make test && make ExperimentalCoverage && gcovr -r ../ ../naive_algorithm/ ../parallel_algorithm/ && gcovr -r ../ ../naive_algorithm/ ../parallel_algorithm/ --html -o cover-html.html'
       - run:
           name: Creating Dummy Artifacts
-          command: |
+          command:
             - store_artifacts:
                 path: ./cover-html.html
                 destination: artifact-file
