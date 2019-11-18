@@ -48,6 +48,6 @@ jobs:
       - run:
           name: Creating Dummy Artifacts
           command:
-            - store_artifacts:
-                path: ./cover-html.html
-                destination: artifact-file
+      - store_artifacts:
+          path: ./cover-html.html
+          destination: artifact-file
