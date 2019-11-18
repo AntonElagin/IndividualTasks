@@ -1,8 +1,8 @@
 #include "test_help_file.h"
 
 void TestTemplate::SetUp() {
-  TrueResult = generate_comment_array(10000,"../test/test_data/input2.txt");
-  FILE* fptr = fopen("../test/test_data/input2.txt", "r");
+  TrueResult = generate_comment_array(10000,"../test/input2.txt");
+  FILE* fptr = fopen("../test/input2.txt", "r");
   if (fptr) {
     fscanf(fptr, "%d", &size);
     comment = new Comment [size]; //(Comment*) malloc(sizeof(Comment) * (size));
