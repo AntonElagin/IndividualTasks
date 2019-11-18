@@ -1,7 +1,3 @@
-//
-// Created by anton on 20.10.2019.
-//
-
 #ifndef INDIVIDUALTASK2_NAIVE_ALGORITHM_H
 #define INDIVIDUALTASK2_NAIVE_ALGORITHM_H
 

@@ -1,7 +1,3 @@
-//
-// Created by anton on 20.10.2019.
-//
-
 #include "naive_algorithm.h"
 
 int find_zero_count_naive(const Comment* array, int arr_size) {

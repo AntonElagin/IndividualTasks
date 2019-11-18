@@ -1,14 +1,14 @@
-//
-// Created by anton on 20.10.2019.
-//
-
 #include <wait.h>
+#include <sys/sysinfo.h>
 #include "parallel_algorithm.h"
 
 int find_zero_count_parallel(const Comment* array, int arr_size) {
-  size_t process_count = 4;
-  pid_t * child = (pid_t*) malloc(4 * sizeof(pid_t));
-  //pid_t child[4];
+  if (!array && arr_size <= 0 )
+    return 0;
+  const size_t process_count = get_nprocs_conf();
+  if (process_count == 0)
+    return -1;
+  pid_t * child = (pid_t*) malloc(process_count * sizeof(pid_t));
   int return_counter = 0;
   int fd[2], status;
   pipe(fd);
