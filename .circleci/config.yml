@@ -44,7 +44,7 @@ jobs:
           command: 'cd Task2/build && valgrind --tool=memcheck -v --leak-check=yes ./runTests'
       - run:
           name: Run Gcover
-          command: 'cd Task2/ && mkdir Build && cd Build && cmake .. && make && make test && make ExperimentalCoverage && gcovr -r ../ ../naive_algorithm/ ../parallel_algorithm/ && gcovr -r ../ ../naive_algorithm/ ../parallel_algorithm/ --html -o cover-html.html'
+          command: 'cd Task2/ && mkdir Build && cd Build && cmake .. && make && make test && make ExperimentalCoverage && gcovr -r ../ && gcovr -r ../ --html -o cover-html.html'
       - store_artifacts:
-          path: ./cover-html.html
+          path: ./Task2/Build/cover-html.html
           destination: artifact-file
